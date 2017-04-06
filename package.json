@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "prestart": "babel-node buildScripts/start.js",
-    "start": "npm-run-all --parallel security-check open:src",
+    "start": "npm-run-all --parallel security-check open:src lint:watch",
     "open:src": "babel-node buildScripts/server.js",
+    "lint": "esw webpack.config.*, src, buildScripts --color",
+    "lint:watch": "npm run lint -- --watch",
     "security-check": "nsp check",
     "localtunnel": "lt --port 3000",
     "share": "npm-run-all --parallel open:src localtunnel",
@@ -25,6 +27,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
+    "babel-eslint": "7.2.1",
     "babel-loader": "^6.4.1",
     "babel-preset-latest": "6.24.0",
     "babel-register": "^6.24.0",
@@ -35,6 +38,7 @@
     "css-loader": "0.28.0",
     "eslint": "3.19.0",
     "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-react": "6.10.3",
     "eslint-watch": "3.0.1",
     "express": "4.15.2",
     "file-loader": "0.11.1",
